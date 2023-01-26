@@ -106,13 +106,13 @@
   cursor: pointer;
 }
 
-.rating-image {
+.rating-img {
   max-width: 152px;
   height: 20px;
 }
 
 @media screen and (min-width: 768px) {
-  .rating-image {
+  .rating-img {
     height: 24px;
   }
 }
