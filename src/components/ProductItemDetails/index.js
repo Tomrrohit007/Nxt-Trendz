@@ -138,13 +138,13 @@ class ProductItemDetails extends Component {
               whileHover={{scale:1.02}}
               initial={{scale:0, opacity:0, y:"100vw"}}
               animate={{scale:1, opacity:1, y:0}}
-              transition={{duration:0.7, type:"spring", mass:0.4, damping:10}}
+              transition={{duration:0.7, type:"spring", mass:0.3, damping:10}}
                src={imageUrl} alt="product" className="product-image" />
 
               <motion.div
                initial={{scale:0, opacity:0, y:"100vw"}}
                animate={{scale:1, opacity:1, y:0}}
-               transition={{delay:0.2, duration:0.7, type:"spring", mass:0.4, damping:10}}
+               transition={{delay:0.2, duration:0.7, type:"spring", mass:0.3, damping:10}}
               className="product">
                 <h1 className="product-name">{title}</h1>
                 <p className="price-details">Rs {price}/-</p>
