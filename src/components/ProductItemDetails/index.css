@@ -163,6 +163,19 @@
   width: 16px;
   height: 16px;
 }
+.rating{
+  color: white;
+  font-size: 13px;
+}
+.rating-container{
+  background-color: #3b82f6;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  height: 30px;
+}
 
 .quantity {
   color: #616e7c;
@@ -171,6 +184,9 @@
   font-weight: 500;
   margin-left: 24px;
   margin-right: 24px;
+}
+.star{
+  height: 20px;
 }
 
 @media screen and (min-width: 768px) {
@@ -228,15 +244,12 @@
   padding-left: 0;
 }
 
-@media screen and (min-width: 768px) {
-  .similar-products-list {
-    margin-top: 24px;
-  }
-}
 
 @media screen and (min-width: 768px) {
   .similar-products-list {
     flex-direction: row;
+    margin-top: 24px;
+    
   }
 }
 

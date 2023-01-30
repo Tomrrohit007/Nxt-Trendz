@@ -1,9 +1,23 @@
 import {Link, withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
+import { motion } from 'framer-motion'
 
 import CartContext from '../../context/CartContext'
 
 import './index.css'
+
+const variants = {
+  initial:{
+    y:"-20vh"
+  },
+  final:{
+    y:0,
+    transition:{
+      duration:0.5
+    }
+  }
+}
+
 
 const Header = props => {
   const onClickLogout = () => {
@@ -30,7 +44,7 @@ const Header = props => {
   )
 
   return (
-    <nav className="nav-header">
+    <motion.nav variants={variants} initial="initial" animate="final" className="nav-header">
       <div className="nav-content">
         <div className="nav-bar-mobile-logo-container">
           <Link to="/">
@@ -63,32 +77,33 @@ const Header = props => {
             />
           </Link>
           <ul className="nav-menu">
-            <li className="nav-menu-item">
+            <motion.li whileHover={{y:-3}}  className="nav-menu-item">
               <Link to="/" className="nav-link">
                 Home
               </Link>
-            </li>
+            </motion.li>
 
-            <li className="nav-menu-item">
+            <motion.li whileHover={{y:-3}} className="nav-menu-item">
               <Link to="/products" className="nav-link">
                 Products
               </Link>
-            </li>
+            </motion.li>
 
-            <li className="nav-menu-item">
+            <motion.li whileHover={{y:-3}} className="nav-menu-item">
               <Link to="/cart" className="nav-link">
                 Cart
                 {renderCartItemsCount()}
               </Link>
-            </li>
+            </motion.li>
           </ul>
-          <button
+          <motion.button
+          whileHover={{scale:1.01, y:-3}} whileTap={{scale:0.98, opacity:0.8}}
             type="button"
             className="logout-desktop-btn"
             onClick={onClickLogout}
           >
             Logout
-          </button>
+          </motion.button>
         </div>
       </div>
       <div className="nav-menu-mobile">
@@ -124,7 +139,7 @@ const Header = props => {
           </li>
         </ul>
       </div>
-    </nav>
+    </motion.nav>
   )
 }
 

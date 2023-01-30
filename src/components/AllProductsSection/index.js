@@ -163,7 +163,7 @@ class AllProductsSection extends Component {
           sortbyOptions={sortbyOptions}
           changeSortby={this.changeSortby}
         />
-        <ul className="products-list">
+        <ul className="products-list" >
           {productsList.map(product => (
             <ProductCard productData={product} key={product.id} />
           ))}

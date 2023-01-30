@@ -1,6 +1,7 @@
 import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
 import {AiFillCloseCircle} from 'react-icons/ai'
-
+import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import CartContext from '../../context/CartContext'
 
 import './index.css'
@@ -12,6 +13,7 @@ const CartItem = props => (
         removeCartItem,
         incrementCartItemQuantity,
         decrementCartItemQuantity,
+        getSimilarItemId
       } = value
       const {cartItemDetails} = props
       const {id, title, brand, quantity, price, imageUrl} = cartItemDetails
@@ -24,11 +26,16 @@ const CartItem = props => (
       const onRemoveCartItem = () => {
         removeCartItem(id)
       }
+      const similarId=()=>{
+        getSimilarItemId(id)
+      }
       const totalPrice = price * quantity
 
       return (
-        <li className="cart-item">
+        <motion.li whileHover={{y:-4}} className="cart-item" onClick={similarId}>
+            <Link to={`/products/${id}`} className="nav-link">
           <img className="cart-product-image" src={imageUrl} alt={title} />
+              </Link>
           <div className="cart-item-details-container">
             <div className="cart-product-title-brand-container">
               <p className="cart-product-title">{title}</p>
@@ -72,7 +79,7 @@ const CartItem = props => (
           >
             <AiFillCloseCircle color="#616E7C" size={20} />
           </button>
-        </li>
+        </motion.li>
       )
     }}
   </CartContext.Consumer>

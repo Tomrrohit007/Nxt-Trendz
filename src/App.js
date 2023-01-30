@@ -1,24 +1,29 @@
-import {Component} from 'react'
+import {Component, lazy, Suspense} from 'react'
 import {Route, Switch, Redirect} from 'react-router-dom'
 
-import LoginForm from './components/LoginForm'
-import Home from './components/Home'
-import Products from './components/Products'
-import ProductItemDetails from './components/ProductItemDetails'
-import Cart from './components/Cart'
-import NotFound from './components/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 import CartContext from './context/CartContext'
-
 import './App.css'
+
+const Home =  lazy(()=>import("./components/Home"))
+const LoginForm =  lazy(()=>import("./components/LoginForm"))
+const Products =  lazy(()=>import("./components/Products"))
+const Cart =  lazy(()=>import("./components/Cart"))
+const ProductItemDetails =  lazy(()=>import("./components/ProductItemDetails"))
+const NotFound =  lazy(()=>import("./components/NotFound"))
 
 class App extends Component {
   state = {
     cartList: [],
+    similarItemId:null
   }
 
   removeAllCartItems = () => {
     this.setState({cartList: []})
+  }
+
+  getSimilarItemId =(id)=>{
+    this.setState({similarItemId:id})
   }
 
   incrementCartItemQuantity = id => {
@@ -85,18 +90,22 @@ class App extends Component {
 
   render() {
     document.title = "NXT TRENDZ"
-    const {cartList} = this.state
+    const {cartList, similarItemId} = this.state
+    console.log(similarItemId)
     return (
       <CartContext.Provider
         value={{
           cartList,
+          similarItemId,
           addCartItem: this.addCartItem,
           removeCartItem: this.removeCartItem,
           incrementCartItemQuantity: this.incrementCartItemQuantity,
           decrementCartItemQuantity: this.decrementCartItemQuantity,
           removeAllCartItems: this.removeAllCartItems,
+          getSimilarItemId:this.getSimilarItemId
         }}
       >
+          <Suspense>
         <Switch>
           <Route exact path="/login" component={LoginForm} />
           <ProtectedRoute exact path="/" component={Home} />
@@ -105,11 +114,13 @@ class App extends Component {
             exact
             path="/products/:id"
             component={ProductItemDetails}
+            key={similarItemId}
           />
           <ProtectedRoute exact path="/cart" component={Cart} />
           <Route path="/not-found" component={NotFound} />
           <Redirect to="not-found" />
         </Switch>
+          </Suspense>
       </CartContext.Provider>
     )
   }

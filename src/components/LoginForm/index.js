@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {motion} from "framer-motion"
 import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
 
@@ -55,11 +56,9 @@ class LoginForm extends Component {
     const {password} = this.state
 
     return (
-      <>
-        <label className="input-label" htmlFor="password">
-          PASSWORD
-        </label>
-        <input
+      <div>
+        <motion.input
+          whileFocus={{borderBottom:"2px solid #b3b0af", y:-5}}
           type="password"
           id="password"
           className="password-input-field"
@@ -67,7 +66,7 @@ class LoginForm extends Component {
           onChange={this.onChangePassword}
           placeholder="Password"
         />
-      </>
+      </div>
     )
   }
 
@@ -76,10 +75,8 @@ class LoginForm extends Component {
 
     return (
       <>
-        <label className="input-label" htmlFor="username">
-          USERNAME
-        </label>
-        <input
+        <motion.input
+       whileFocus={{borderBottom:"2px solid #b3b0af", y:-5}}
           type="text"
           id="username"
           className="username-input-field"
@@ -100,18 +97,27 @@ class LoginForm extends Component {
     }
 
     return (
-      <div className="login-form-container">
-        <img
+      <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration:1, when:"beforeChildren", staggerChildren:1}} className="login-form-container">
+        <motion.img
+        initial={{scale:0, opacity:0}}
+        animate={{scale:1, opacity:1}}
           src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
           className="login-website-logo-mobile-img"
           alt="website logo"
         />
-        <img
+        <motion.img
+        initial={{scale:0.4, y:"40vh", opacity:0}}
+        animate={{y:0, scale:1, opacity:1}}
+        transition={{type:"spring", damping:16}}
           src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-login-img.png"
           className="login-img"
           alt="website login"
         />
-        <form className="form-container" onSubmit={this.submitForm}>
+        <motion.form 
+        initial={{y:"40vh", opacity:0}}
+        animate={{y:0, opacity:1}}
+        transition={{type:"spring", damping:16, delay:0.5}}
+        className="form-container" onSubmit={this.submitForm}>
           <img
             src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"
             className="login-website-logo-desktop-img"
@@ -119,12 +125,12 @@ class LoginForm extends Component {
           />
           <div className="input-container">{this.renderUsernameField()}</div>
           <div className="input-container">{this.renderPasswordField()}</div>
-          <button type="submit" className="login-button">
+          <motion.button whileHover={{scale:1.01}} whileTap={{scale:0.98, opacity:0.8}} type="submit" className="login-button">
             Login
-          </button>
+          </motion.button>
           {showSubmitError && <p className="error-message">*{errorMsg}</p>}
-        </form>
-      </div>
+        </motion.form>
+      </motion.div>
     )
   }
 }

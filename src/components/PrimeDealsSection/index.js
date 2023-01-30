@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-
+import { motion } from 'framer-motion'
 import ProductCard from '../ProductCard'
 
 import './index.css'
@@ -64,12 +64,12 @@ class PrimeDealsSection extends Component {
     const {primeDeals} = this.state
     return (
       <div>
-        <h1 className="primedeals-list-heading">Exclusive Prime Deals</h1>
-        <ul className="products-list">
+        <motion.h1 initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.2}} className="primedeals-list-heading">Exclusive Prime Deals</motion.h1>
+        <motion.ul intial={{opacity:0}} animate={{opacity:1 }} transition={{delay:0.5, when:"beforeChildren", staggerChildren:0.3}} className="products-list">
           {primeDeals.map(product => (
             <ProductCard productData={product} key={product.id} />
           ))}
-        </ul>
+        </motion.ul>
       </div>
     )
   }

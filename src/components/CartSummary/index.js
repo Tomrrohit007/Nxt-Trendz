@@ -1,6 +1,6 @@
 // Write your code here
 import CartContext from '../../context/CartContext'
-
+import { motion } from 'framer-motion'
 import './index.css'
 
 const CartSummary = () => (
@@ -17,9 +17,11 @@ const CartSummary = () => (
             Order Total: <span className="price-total">Rs {priceSum}/- </span>
           </h1>
           <p className="total-quantity">{cartList.length} Items in cart</p>
-          <button type="button" className="check-out">
+          <motion.button
+           whileHover={{scale:1.01, y:-3}} whileTap={{scale:0.98, opacity:0.8}}
+          type="button" className="check-out">
             Checkout
-          </button>
+          </motion.button>
         </div>
       )
     }}

@@ -1,5 +1,5 @@
 import {BsSearch} from 'react-icons/bs'
-
+import { motion } from 'framer-motion'
 import './index.css'
 
 const FiltersGroup = props => {
@@ -14,7 +14,8 @@ const FiltersGroup = props => {
       const onClickRatingItem = () => changeRating(rating.ratingId)
 
       return (
-        <li
+        <motion.li 
+          whileHover={{scale:1.03}}
           className="rating-item"
           key={rating.ratingId}
           onClick={onClickRatingItem}
@@ -25,7 +26,7 @@ const FiltersGroup = props => {
             className="rating-img"
           />
           <p className={ratingClassName}>& up</p>
-        </li>
+        </motion.li>
       )
     })
   }
@@ -54,7 +55,7 @@ const FiltersGroup = props => {
           key={category.categoryId}
           onClick={onClickCategoryItem}
         >
-          <p className={categoryClassName}>{category.name}</p>
+          <motion.p whileHover={{opacity:0.6, scale:1.02}} className={categoryClassName}>{category.name}</motion.p>
         </li>
       )
     })
@@ -82,8 +83,9 @@ const FiltersGroup = props => {
   const renderSearchInput = () => {
     const {searchInput} = props
     return (
-      <div className="search-input-container">
+      <motion.div whileHover={{scale:1.02}} className="search-input-container">
         <input
+          
           value={searchInput}
           type="search"
           className="search-input"
@@ -91,8 +93,8 @@ const FiltersGroup = props => {
           onChange={onChangeSearchInput}
           onKeyDown={onEnterSearchInput}
         />
-        <BsSearch className="search-icon" />
-      </div>
+          <BsSearch  className="search-icon" />
+      </motion.div>
     )
   }
 
@@ -103,13 +105,14 @@ const FiltersGroup = props => {
       {renderSearchInput()}
       {renderProductCategories()}
       {renderRatingsFilters()}
-      <button
+      <motion.button
+        whileHover={{y:-6}}
         type="button"
         className="clear-filters-btn"
         onClick={clearFilters}
       >
         Clear Filters
-      </button>
+      </motion.button>
     </div>
   )
 }

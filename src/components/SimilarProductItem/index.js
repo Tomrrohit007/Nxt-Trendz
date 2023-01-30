@@ -1,13 +1,26 @@
 import './index.css'
+import CartContext from '../../context/CartContext'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const SimilarProductItem = props => {
   const {productDetails} = props
   const {id, title, brand, imageUrl, rating, price} = productDetails
 
-  return (
-      <Link className='nav-link' to={`/products/${id}`}>
-    <li className="similar-product-item">
+  return(
+    <CartContext.Consumer>
+      {value => {
+      const {getSimilarItemId} = value
+
+      const similarId=()=>{
+        getSimilarItemId(id)
+      }
+  
+        return (
+          <Link className='nav-link' to={`/products/${id}`} onClick={similarId}>
+    <motion.li 
+    whileHover={{y:-10}}
+    className="similar-product-item">
       <img
         src={imageUrl}
         className="similar-product-img"
@@ -26,8 +39,11 @@ const SimilarProductItem = props => {
           />
         </div>
       </div>
-    </li>
+    </motion.li>
       </Link>
+        )
+      }}
+    </CartContext.Consumer>
   )
 }
 

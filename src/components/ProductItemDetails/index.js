@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
+import { motion } from 'framer-motion'
 
 import CartContext from '../../context/CartContext'
 
@@ -133,8 +134,18 @@ class ProductItemDetails extends Component {
         return (
           <div className="product-details-success-view">
             <div className="product-details-container">
-              <img src={imageUrl} alt="product" className="product-image" />
-              <div className="product">
+              <motion.img
+              whileHover={{scale:1.02}}
+              initial={{scale:0, opacity:0, y:"100vw"}}
+              animate={{scale:1, opacity:1, y:0}}
+              transition={{duration:0.7, type:"spring", mass:0.4, damping:10}}
+               src={imageUrl} alt="product" className="product-image" />
+
+              <motion.div
+               initial={{scale:0, opacity:0, y:"100vw"}}
+               animate={{scale:1, opacity:1, y:0}}
+               transition={{delay:0.2, duration:0.7, type:"spring", mass:0.4, damping:10}}
+              className="product">
                 <h1 className="product-name">{title}</h1>
                 <p className="price-details">Rs {price}/-</p>
                 <div className="rating-and-reviews-count">
@@ -177,24 +188,29 @@ class ProductItemDetails extends Component {
                     <BsPlusSquare className="quantity-controller-icon" />
                   </button>
                 </div>
-                <button
+                <motion.button
+                  whileHover={{opacity:0.8, scale:1.06}}
                   type="button"
                   className="button add-to-cart-btn"
                   onClick={onClickAddToCart}
                 >
                   ADD TO CART
-                </button>
-              </div>
+                </motion.button>
+              </motion.div>
             </div>
             <h1 className="similar-products-heading">Similar Products</h1>
-            <ul className="similar-products-list">
+            <motion.ul
+            initial={{scale:0, opacity:0, y:"100vw"}}
+            animate={{scale:1, opacity:1, y:0}}
+            transition={{delay:0.4, duration:0.7, type:"spring", mass:0.4, damping:11}}
+            className="similar-products-list">
               {similarProductsData.map(eachSimilarProduct => (
                 <SimilarProductItem
                   productDetails={eachSimilarProduct}
                   key={eachSimilarProduct.id}
                 />
               ))}
-            </ul>
+            </motion.ul>
           </div>
         )
       }}
