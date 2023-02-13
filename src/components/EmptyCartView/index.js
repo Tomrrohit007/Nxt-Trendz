@@ -14,9 +14,9 @@ const childVariants = {
     scale:1,
     transition:{
       type:'spring',
-      delay:0.3,
-      mass:0.5,
-      damping:10
+      duration:0.6,
+      mass:0.3,
+      damping:12
     }
   }
 }

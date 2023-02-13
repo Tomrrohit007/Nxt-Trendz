@@ -1,7 +1,6 @@
 import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
-import {AiFillCloseCircle} from 'react-icons/ai'
+import {AiFillDelete} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import CartContext from '../../context/CartContext'
 
 import './index.css'
@@ -32,7 +31,7 @@ const CartItem = props => (
       const totalPrice = price * quantity
 
       return (
-              <motion.li whileHover={{y:-4}} className="cart-item">
+              <li className="cart-item">
               <Link to={`/products/${id}`} className="nav-link" onClick={similarId}>
                 <img className="cart-product-image" src={imageUrl} alt={title} />
               </Link>
@@ -48,7 +47,7 @@ const CartItem = props => (
                     testid="minus"
                     onClick={onClickDecrement}
                   >
-                    <BsDashSquare color="#52606D" size={12} />
+                    <BsDashSquare color="#52606D" size="12px" />
                   </button>
                   <p className="cart-quantity">{quantity}</p>
                   <button
@@ -57,7 +56,7 @@ const CartItem = props => (
                     testid="plus"
                     onClick={onClickIncrement}
                   >
-                    <BsPlusSquare color="#52606D" size={12} />
+                    <BsPlusSquare color="#52606D" size="12px" />
                   </button>
                 </div>
                 <div className="total-price-remove-container">
@@ -76,10 +75,10 @@ const CartItem = props => (
                 type="button"
                 onClick={onRemoveCartItem}
                 testid="remove"
-              >
-                <AiFillCloseCircle color="#616E7C" size={20} />
+                >
+                <AiFillDelete color='#52606d' size="18px" />
           </button>
-        </motion.li>
+        </li>
       )
     }}
   </CartContext.Consumer>

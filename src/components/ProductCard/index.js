@@ -2,12 +2,34 @@ import {Link} from 'react-router-dom'
 import { motion } from 'framer-motion'
 import './index.css'
 
+
+const itemVariants = {
+  initial:{
+    y:"10vh",
+    opacity:0.8,
+    scale:0.9
+  },
+  final:{
+    y:0,
+    scale:1,
+    opacity:1,
+    transition:{
+      duration:0.1,
+      type:"spring",
+      mass:0.3,
+      damping:12,
+      ease:"easeInOut"
+    }
+  }
+} 
+
+
 const ProductCard = props => {
   const {productData} = props
   const {title, brand, imageUrl, rating, price, id} = productData
 
   return (
-    <motion.li whileHover={{y:-10}} initial={{y:"100vh", opacity:0, scale:0.4}} animate={{y:0, opacity:1, scale:1}} transition={{type:"spring", mass:0.4, damping:10}} className="product-item" >
+    <motion.li whileHover={{y:-10}} variants={itemVariants} initial="initial" whileInView="final" className="product-item" >
       <Link to={`/products/${id}`} className="link-item">
         <img src={imageUrl} alt="product" className="thumbnail" />
         <h1 className="title">{title}</h1>

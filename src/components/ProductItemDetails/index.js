@@ -19,6 +19,25 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
+const itemVariants = {
+  initial:{
+    y:"40vw",
+    opacity:0,
+    scale:0
+  },
+  final:{
+    y:0,
+    scale:1,
+    opacity:1,
+    transition:{
+      duration:0.4,
+      type:"spring",
+      mass:0.3,
+      damping:12
+    }
+  }
+} 
+
 class ProductItemDetails extends Component {
   state = {
     productData: {},
@@ -136,15 +155,15 @@ class ProductItemDetails extends Component {
             <div className="product-details-container">
               <motion.img
               whileHover={{scale:1.02}}
-              initial={{scale:0, opacity:0, y:"100vw"}}
-              animate={{scale:1, opacity:1, y:0}}
-              transition={{duration:0.7, type:"spring", mass:0.3, damping:10}}
+              variants={itemVariants}
+              initial="initial"
+              animate="final"
                src={imageUrl} alt="product" className="product-image" />
 
               <motion.div
-               initial={{scale:0, opacity:0, y:"100vw"}}
-               animate={{scale:1, opacity:1, y:0}}
-               transition={{delay:0.2, duration:0.7, type:"spring", mass:0.3, damping:10}}
+              variants={itemVariants}
+               initial="initial"
+               animate="final"
               className="product">
                 <h1 className="product-name">{title}</h1>
                 <p className="price-details">Rs {price}/-</p>
@@ -200,9 +219,9 @@ class ProductItemDetails extends Component {
             </div>
             <h1 className="similar-products-heading">Similar Products</h1>
             <motion.ul
-            initial={{scale:0, opacity:0, y:"100vw"}}
-            animate={{scale:1, opacity:1, y:0}}
-            transition={{delay:0.4, duration:0.7, type:"spring", mass:0.4, damping:11}}
+              variants={itemVariants}
+              initial="initial"
+              animate="final"
             className="similar-products-list">
               {similarProductsData.map(eachSimilarProduct => (
                 <SimilarProductItem

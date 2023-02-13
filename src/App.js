@@ -91,7 +91,6 @@ class App extends Component {
   render() {
     document.title = "NXT TRENDZ"
     const {cartList, similarItemId} = this.state
-    console.log(similarItemId)
     return (
       <CartContext.Provider
         value={{
@@ -105,7 +104,7 @@ class App extends Component {
           getSimilarItemId:this.getSimilarItemId
         }}
       >
-          <Suspense>
+        <Suspense>
         <Switch>
           <Route exact path="/login" component={LoginForm} />
           <ProtectedRoute exact path="/" component={Home} />
@@ -120,7 +119,7 @@ class App extends Component {
           <Route path="/not-found" component={NotFound} />
           <Redirect to="not-found" />
         </Switch>
-          </Suspense>
+        </Suspense>
       </CartContext.Provider>
     )
   }

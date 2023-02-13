@@ -3,6 +3,8 @@ import CartContext from '../../context/CartContext'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
+
+
 const SimilarProductItem = props => {
   const {productDetails} = props
   const {id, title, brand, imageUrl, rating, price} = productDetails

@@ -1,6 +1,6 @@
 import {BsSearch} from 'react-icons/bs'
-import { motion } from 'framer-motion'
 import './index.css'
+import { motion } from 'framer-motion'
 
 const FiltersGroup = props => {
   const renderRatingsFiltersList = () => {
